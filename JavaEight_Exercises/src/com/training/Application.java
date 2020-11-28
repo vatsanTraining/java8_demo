@@ -37,6 +37,8 @@ public class Application {
 		 
 		 Thread thread3 = new Thread(runnable2);
 		 thread3.start();
+		 
+		 System.out.println(runnable2);
 	}
 
 }

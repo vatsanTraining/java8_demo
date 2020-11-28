@@ -11,6 +11,8 @@ public class CreditCardRepository {
 	public CreditCardRepository() {
 		super();
 
+		cards =new HashMap<>();
+		
 		cards.put(1020L,new CreditCard(1020,"Manish", 50000));
 		cards.put(1021L,new CreditCard(1021,"Sachin", 450000));
 		cards.put(1022L,new CreditCard(1022,"Vikas",  1450000));
