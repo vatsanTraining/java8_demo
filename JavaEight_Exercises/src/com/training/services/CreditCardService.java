@@ -5,10 +5,15 @@ import com.training.domains.CreditCard;
 import com.training.ifaces.CheckEligibility;
 import com.training.repo.CreditCardRepository;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.function.Consumer;
+import java.util.function.Predicate;
+
+
+@Slf4j
 public class CreditCardService {
 
-	
 	private CreditCardRepository repo;
 
 	public CreditCardService() {
@@ -37,9 +42,47 @@ public class CreditCardService {
 			
 			 if(check.test(card)) {
 				 
-				 System.out.println(card.getCardHolder());
+				 log.info(card.getCardHolder());
 			 }
 		}
 		
 	}
+	
+	// Using Predicate functional Interface
+	public void checkCardHolderName() {
+	
+		CreditCard card = this.repo.findById(1021);
+		
+		Predicate<CreditCard> checkNameLength = (arg) -> 
+		             arg.getCardHolder().length() >3 && arg.getCardHolder().length()<8;
+		
+		if( checkNameLength.test(card)) {
+			System.out.println("Valid Name");
+		} else {
+			
+			System.out.println("Invalid Name");
+		}
+		
+	}
+	
+	// Using Predicate functional Interface and Its Default Method
+		public void checkCardHolderName(long id) {
+		
+			CreditCard card = this.repo.findById(id);
+			
+			Predicate<CreditCard> checkNameLength = (arg) -> 
+			             arg.getCardHolder().length() >3 && arg.getCardHolder().length()<8;
+			
+			             Predicate<CreditCard> checkCreditLimit = (arg) -> 
+			             arg.getCreditLimit() >400000;
+			             
+			if( checkNameLength.and(checkCreditLimit).test(card)) {
+				System.out.println("Valid Customer ");
+			} else {
+				
+				System.out.println("Invalid Customer ");
+			}
+			
+		}
+	
 }

@@ -14,6 +14,14 @@ public class UsingLambda {
 		  System.out.println("Customer Eligibile Housing Loan");
 		  
 		  service.checkForLoanEligibility();
+		  
+		  
+		  service.checkCardHolderName();
+		  
+		  service.checkCardHolderName(1022);
+		  
+		  service.checkCardHolderName(1023);
+		  
 	}
 
 }
