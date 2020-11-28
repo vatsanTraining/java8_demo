@@ -66,7 +66,6 @@ public class CrediCardServiceWithMethodReference {
 
 	// Method Reference - Constructor Example 4
 	
-	
 	public void createObject() {
 		
 		

@@ -1,6 +1,7 @@
 package com.training;
 
 import com.training.services.CrediCardServiceWithMethodReference;
+import com.training.services.Employee;
 
 public class UsingMethoReference {
 
@@ -16,6 +17,15 @@ public class UsingMethoReference {
 		
 		ref.checkName();
 				 
+		Employee ram = new Employee();
+		  ram.setGrade("Manager");
+		  
+		  Employee shyam = new Employee();
+		  shyam.setGrade("Leader");
+		  
+		  System.out.println(ram.test(shyam));
+		  
+		  ram.show(shyam);
 	}
 
 }
