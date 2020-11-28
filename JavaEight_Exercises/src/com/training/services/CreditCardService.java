@@ -8,6 +8,7 @@ import com.training.repo.CreditCardRepository;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.function.Consumer;
+import java.util.function.DoublePredicate;
 import java.util.function.Predicate;
 
 
@@ -85,4 +86,20 @@ public class CreditCardService {
 			
 		}
 	
+	
+		// Using Primitive Predicate functional Interface 
+				public void checkCardHolderName(Double amount) {
+					
+					
+					CreditCard card = repo.findById(1022);
+					
+					double creditLimit = card.getCreditLimit();
+					
+					DoublePredicate checkLimit = (limit) -> limit ==amount;
+					
+					
+					System.out.println("Is Eligible:="+checkLimit.test(creditLimit));
+					
+				}
+			
 }

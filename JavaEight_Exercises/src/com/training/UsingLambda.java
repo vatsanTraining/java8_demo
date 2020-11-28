@@ -22,6 +22,8 @@ public class UsingLambda {
 		  
 		  service.checkCardHolderName(1023);
 		  
+		  service.checkCardHolderName(1450000.00);
+		  
 	}
 
 }
