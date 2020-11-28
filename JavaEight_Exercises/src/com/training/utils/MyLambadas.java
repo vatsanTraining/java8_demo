@@ -15,4 +15,13 @@ public class MyLambadas {
 
      return checkNameLength;
 	}
+	
+	public static boolean check(CreditCard card) {
+		
+		return  card.getCardHolder().length()>6;
+	}
+	
+	
+   
+	
 }

@@ -25,11 +25,11 @@ public class CreditCardRepository {
 	
 		list = new ArrayList<CreditCard>();
 		
-		list.add(new CreditCard(1020,"Manish", 50000));
+		list.add(new CreditCard(1020,"Manish Shetty", 50000));
 		list.add(new CreditCard(1020,"Sachin", 450000));
 		list.add(new CreditCard(1020,"Vikas", 1450000));
 		list.add(new CreditCard(1020,"Suresh", 250000));
-		list.add(new CreditCard(1020,"Ashish", 350000));
+		list.add(new CreditCard(1020,"Ashish Kumar", 350000));
 		
 	}
 	
