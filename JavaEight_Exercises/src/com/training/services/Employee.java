@@ -18,7 +18,7 @@ public class Employee implements CheckEligibility<Employee>,ChekStatus<Employee>
 	@Override
 	public void show(Employee t) {
 		// TODO Auto-generated method stub
-		CheckEligibility.super.show(t);
+		ChekStatus.super.show(t);
 	}
 
 	@Override
@@ -27,4 +27,15 @@ public class Employee implements CheckEligibility<Employee>,ChekStatus<Employee>
 		return 0;
 	}
 
+	public String getMessage() {
+		
+		switch (this.grade) {
+		case "Manager":
+				return "Great Manager";
+		case "Leader":
+			return "Excellent Leader";
+		default:
+			return null;
+		}
+	}
 }

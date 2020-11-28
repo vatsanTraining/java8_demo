@@ -1,5 +1,7 @@
 package com.training;
 
+import java.util.Optional;
+
 import com.training.services.CrediCardServiceWithMethodReference;
 import com.training.services.Employee;
 
@@ -26,6 +28,20 @@ public class UsingMethoReference {
 		  System.out.println(ram.test(shyam));
 		  
 		  ram.show(shyam);
+		  
+		  Optional<String> option = Optional.ofNullable(ram.getMessage());
+		  
+		 if( option.isPresent()){
+			  System.out.println("Optional Get :" +option.get());
+			     
+		  } else {
+			   System.out.println("Invalid Choice - ");
+		  }
+
+		   option.ifPresent(arg -> System.out.println("if Present"+arg));
+		   
+		   
+		   
 	}
 
 }
