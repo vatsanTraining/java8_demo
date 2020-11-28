@@ -22,6 +22,15 @@ public class MyLambadas {
 	}
 	
 	
+	public double calculate(CreditCard card) {
+		
+		
+		  return card.getCreditLimit() * .20;
+		
+	}
    
-	
+	public CreditCard card() {
+		
+		return new CreditCard(84848, "ramesh", 474747);
+	}
 }

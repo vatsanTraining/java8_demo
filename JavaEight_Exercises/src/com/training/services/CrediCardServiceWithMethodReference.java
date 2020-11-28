@@ -2,7 +2,9 @@ package com.training.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 import com.training.domains.CreditCard;
 import com.training.repo.CreditCardRepository;
@@ -34,7 +36,7 @@ public class CrediCardServiceWithMethodReference {
 		
 	}
 	
-	// Method Reference - Example2
+	// Method Reference - Static Example2
 	public void checkName() {
 		
 		Predicate<CreditCard> condition= MyLambadas::check;
@@ -45,4 +47,34 @@ public class CrediCardServiceWithMethodReference {
 		
 	}
 	
+	// Method Reference - Instance Method Example3
+	
+	public void calculate() {
+		
+		MyLambadas lambda = new MyLambadas();
+		
+		//Function<CreditCard,Double> funcRef = (card) -> card.getCreditLimit() *.20;
+
+		Function<CreditCard,Double> funcRef = lambda::calculate;
+		
+		for(CreditCard card : list) {
+			   System.out.println("is Length Greater Than 6" +funcRef.apply(card));
+			}
+
+		
+	}
+
+	// Method Reference - Constructor Example 4
+	
+	
+	public void createObject() {
+		
+		
+		Supplier<MyLambadas> card = MyLambadas::new;
+		
+		  MyLambadas obj =card.get();
+		  
+		   System.out.println(obj);
+		
+	}
 }
