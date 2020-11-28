@@ -39,6 +39,7 @@ public class UsingLambda {
 		             (amount) -> amount *.10;
 		             
 
+		      service.calculateMinimumAmountAndCashLimit(calculateLimit, calculateCashLimit);       
 	}
 
 }

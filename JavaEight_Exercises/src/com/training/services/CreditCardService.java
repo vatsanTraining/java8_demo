@@ -4,6 +4,7 @@ import java.util.*;
 import com.training.domains.CreditCard;
 import com.training.ifaces.CheckEligibility;
 import com.training.repo.CreditCardRepository;
+import com.training.utils.MyLambadas;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -55,8 +56,7 @@ public class CreditCardService {
 	
 		CreditCard card = this.repo.findById(1021);
 		
-		Predicate<CreditCard> checkNameLength = (arg) -> 
-		             arg.getCardHolder().length() >3 && arg.getCardHolder().length()<8;
+		Predicate<CreditCard> checkNameLength = MyLambadas.checkLength();
 		
 		if( checkNameLength.test(card)) {
 			System.out.println("Valid Name");
@@ -130,7 +130,7 @@ public class CreditCardService {
 
             	   CreditCard card = eachCard.getValue();
 
-            	   calculateLimit.andThen(calculateCashLimit).apply(card);
+            	   System.out.println( "Cash Limit:="+calculateLimit.andThen(calculateCashLimit).apply(card));
             	   
             	   
                }
