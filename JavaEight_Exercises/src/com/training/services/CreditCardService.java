@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.function.Consumer;
 import java.util.function.DoublePredicate;
+import java.util.function.Function;
 import java.util.function.Predicate;
 
 
@@ -101,5 +102,38 @@ public class CreditCardService {
 					System.out.println("Is Eligible:="+checkLimit.test(creditLimit));
 					
 				}
+
+		public void calculateMinimumAmount(Function<CreditCard,Double> calculate) {
 			
+			
+					             
+               Set<Map.Entry<Long, CreditCard>> list=     repo.findAll();
+
+               
+               for(Map.Entry<Long, CreditCard> eachCard : list) {
+            	   
+            	   CreditCard card = eachCard.getValue();
+            	   
+            	   System.out.println("Limit :="+calculate.apply(card));
+            	   
+               }
+					             
+		}
+		
+		public void calculateMinimumAmountAndCashLimit(Function<CreditCard,Double> calculateLimit,
+				            Function<Double,Double> calculateCashLimit) { 
+			
+			
+			   Set<Map.Entry<Long, CreditCard>> list=     repo.findAll();
+			   
+               for(Map.Entry<Long, CreditCard> eachCard : list) {
+
+            	   CreditCard card = eachCard.getValue();
+
+            	   calculateLimit.andThen(calculateCashLimit).apply(card);
+            	   
+            	   
+               }
+		}
+
 }
