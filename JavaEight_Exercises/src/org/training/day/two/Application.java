@@ -16,14 +16,19 @@ public class Application {
 	
 		CreditCardService service = new CreditCardService();
 		
-		int key =1;
+		int key =3;
 		
 		switch (key) {
 		case 1:
-			List<CreditCard> cardList = service.usingFilter();
+			List<CreditCard> cardList = service.usingFilter(300000);
 			print(cardList);
 			break;
-
+		case 2:
+			List<String> cardHolders = service.usingMap(300000);
+			print(cardHolders);
+		case 3:
+			List<String> combinedList = service.usingFlatMap();
+			print(combinedList);
 		default:
 			break;
 		}
