@@ -7,8 +7,12 @@ import java.util.Optional;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
+import javax.lang.model.element.Element;
+
 import static java.util.stream.Collectors.*;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.LinkedList;
@@ -162,4 +166,27 @@ public class CreditCardService {
 		return this.cardList.stream().collect(groupingBy(CreditCard::getCardProvider,toList()));
 	}
 	
+	
+	public double findMaxCreditLimit() {
+		
+		  Optional<Double> maxLimit= this.cardList.parallelStream()
+				             .map(element ->element.getCreditLimit())
+				                 .reduce((e1,e2)-> e1>e2?e1:e2);
+		
+		return maxLimit.get();
+	}
+	
+	public void printCardExpiryDate() {
+		
+		
+	List<LocalDate> dateList=	this.cardList.stream().map(element -> element.getCardExpiryDate()).collect(toList());
+	
+	    for(LocalDate date : dateList) {
+	    	
+	    	System.out.println("IssueDate: = " +date.minus(3,ChronoUnit.YEARS) +  "Expiry Date :="+date);
+	    	
+	    	
+	    }
+	
+	}
 }

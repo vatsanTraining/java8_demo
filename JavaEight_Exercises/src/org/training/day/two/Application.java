@@ -30,7 +30,7 @@ public static void print(Map<String,Double> map) {
 	
 		CreditCardService service = new CreditCardService();
 		
-		int key =2;
+		int key =9;
 		
 		switch (key) {
 		case 1:
@@ -64,6 +64,9 @@ public static void print(Map<String,Double> map) {
 			System.out.println("MINIMUM Credit LImit:=" + aggregates[1]);
 			System.out.println("CardsHolder With Name Suresh :=" + aggregates[2]);
 			
+			double max = service.findMaxCreditLimit();
+			
+			System.out.println("Max Credit Limit With Reduce Operation :="+max);
 			break;
 		case 8:
 			Map<String,List<CreditCard>> list = service.grouping();
@@ -71,6 +74,9 @@ public static void print(Map<String,Double> map) {
 			 print(list.get("visa"));
 			 System.out.println("Master Card Holders");
 			 print(list.get("master"));
+			break;
+		case 9:
+			service.printCardExpiryDate();
 			break;
 		default:
 			break;
