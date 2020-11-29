@@ -140,4 +140,11 @@ public class CreditCardService {
 		return new Double[] {maxCredit,minCredit,new Double(sureshCount)};
 	}
 
+	
+	public Map<String,List<CreditCard>> grouping(){
+		
+		
+		return this.cardList.stream().collect(groupingBy(CreditCard::getCardProvider,toList()));
+	}
+	
 }

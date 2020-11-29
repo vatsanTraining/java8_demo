@@ -16,6 +16,7 @@ public class CreditCard {
 	 long cardNumber;
 	 String cardHolder;
 	 double creditLimit;
+	 String cardProvider;
 	 
 	 
 }
