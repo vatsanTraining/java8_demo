@@ -30,7 +30,7 @@ public static void print(Map<String,Double> map) {
 	
 		CreditCardService service = new CreditCardService();
 		
-		int key =6;
+		int key =7;
 		
 		switch (key) {
 		case 1:
@@ -56,6 +56,14 @@ public static void print(Map<String,Double> map) {
 		case 6:
 			Map<String,Double> map = service.transformListToMap();
 			print(map);
+			break;
+		case 7:
+			Double[] aggregates = service.aggregates();
+			
+			System.out.println("Max Credit LImit :=" + aggregates[0]);
+			System.out.println("MINIMUM Credit LImit:=" + aggregates[1]);
+			System.out.println("CardsHolder With Name Suresh :=" + aggregates[2]);
+			
 			break;
 		default:
 			break;

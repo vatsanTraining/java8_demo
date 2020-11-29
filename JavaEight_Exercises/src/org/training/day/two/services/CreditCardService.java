@@ -2,6 +2,7 @@ package org.training.day.two.services;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.*;
@@ -17,11 +18,14 @@ public class CreditCardService {
 
 	
 	private CreditCardRepository repo;
+	private List<CreditCard> cardList ;
 
 	public CreditCardService() {
 		super();
        
 		repo = new CreditCardRepository();
+		
+		 cardList = repo.getList();
 	}
 	
 	
@@ -31,16 +35,16 @@ public class CreditCardService {
 	public List<CreditCard> usingFilter(double amount){
 		
 		
-		  List<CreditCard> cardList = repo.getList();
+		
 		  
 //		  List<CreditCard> filteredList = 
-//				      cardList.stream().
+//				      this.cardList.stream().
 //				            filter(element -> element.getCreditLimit()>300000 )
 //				               .collect(Collectors.toList());	  
 //			
 	
 				  
-			    return   cardList.stream().
+			    return   this.cardList.stream().
 			            filter(element -> element.getCreditLimit()>amount )
 			               .collect(toList());
 		  
@@ -49,10 +53,9 @@ public class CreditCardService {
 	public List<String> usingMap(double amount){
 		
 		
-		 List<CreditCard> cardList = repo.getList();
+		
 		 
-		 
-		 return   cardList.stream().filter(element -> element.getCreditLimit()>amount).
+		 return   this.cardList.stream().filter(element -> element.getCreditLimit()>amount).
 		            peek((element) ->System.out.println("Element"+element)).map(element -> element.getCardHolder()).collect(toList());
 		
 	}
@@ -72,7 +75,7 @@ public class CreditCardService {
 	
 	public List<CreditCard> sortedList(){
 		
-		 List<CreditCard> cardList = repo.getList();
+		
 
 //		 return cardList.stream().
 //				  sorted(Comparator.comparing(CreditCard::getCardHolder)).
@@ -80,7 +83,7 @@ public class CreditCardService {
 
 
 		
-		 return cardList.stream().
+		 return this.cardList.stream().
 				  sorted(Comparator.comparing(CreditCard::getCardHolder).
 						  thenComparing(Comparator.comparing(CreditCard::getCreditLimit))).
 				       collect(toList());
@@ -89,9 +92,9 @@ public class CreditCardService {
 	
 	public List<String> getDistinctCustomerName(){
 		
-		 List<CreditCard> cardList = repo.getList();
+		
 
-		 return cardList.stream().map(element -> element.getCardHolder()).
+		 return this.cardList.stream().map(element -> element.getCardHolder()).
 				                distinct().collect(toList());
 				 
 		
@@ -101,14 +104,40 @@ public class CreditCardService {
 	
 	public Map<String,Double> transformListToMap(){
 		
-		 List<CreditCard> cardList = repo.getList();
+	
 
 		 
-		 return cardList.stream().filter(element -> element.getCreditLimit()>300000)
+		 return this.cardList.stream().filter(element -> element.getCreditLimit()>300000)
 				                .collect(toMap(CreditCard::getCardHolder, 
 				                		CreditCard::getCreditLimit));
 				 
 		
+	}
+	
+	public Double[] aggregates() {
+		
+		Comparator<CreditCard> limitComparator = Comparator.comparing(CreditCard::getCreditLimit);
+		
+		
+		Optional<CreditCard> maxLimit = this.cardList.stream().max(limitComparator);
+		
+		Optional<CreditCard> minLimit= this.cardList.stream().min(limitComparator);
+
+		long sureshCount = this.cardList.stream().
+				   filter(element -> element.getCardHolder().equalsIgnoreCase("Suresh")).count();
+		
+		double maxCredit =0.0;
+		if(maxLimit.isPresent()) {
+			
+			 maxCredit = maxLimit.get().getCreditLimit();
+		}
+		double minCredit =0.0;
+
+		if(minLimit.isPresent()) {
+			 minCredit = minLimit.get().getCreditLimit();
+		}
+		
+		return new Double[] {maxCredit,minCredit,new Double(sureshCount)};
 	}
 
 }
