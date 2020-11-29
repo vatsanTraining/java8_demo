@@ -16,7 +16,7 @@ public class Application {
 	
 		CreditCardService service = new CreditCardService();
 		
-		int key =3;
+		int key =4;
 		
 		switch (key) {
 		case 1:
@@ -31,6 +31,9 @@ public class Application {
 			List<String> combinedList = service.usingFlatMap();
 			print(combinedList);
 			break;
+		case 4:
+			List<CreditCard> sortedList = service.sortedList();
+			print(sortedList);
 		default:
 			break;
 		}

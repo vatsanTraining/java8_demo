@@ -70,10 +70,16 @@ public class CreditCardService {
 		
 		 List<CreditCard> cardList = repo.getList();
 
+//		 return cardList.stream().
+//				  sorted(Comparator.comparing(CreditCard::getCardHolder)).
+//				       collect(toList());
+
+
+		
 		 return cardList.stream().
-				  sorted(Comparator.comparing(CreditCard::getCardHolder)).
+				  sorted(Comparator.comparing(CreditCard::getCardHolder).
+						  thenComparing(Comparator.comparing(CreditCard::getCreditLimit))).
 				       collect(toList());
-		 
 		
 	}
 }
