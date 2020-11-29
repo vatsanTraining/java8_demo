@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class UsingDateTime {
 
@@ -32,6 +34,15 @@ public class UsingDateTime {
 		LocalDate fromLegacy =legacy.toInstant().atZone(ZoneId.of("Asia/Karachi")).toLocalDate();
 
 		System.out.println("From Legacy"+ fromLegacy);
+	
+		Locale locale =Locale.FRANCE;
+		
+		 ResourceBundle bundle= ResourceBundle.getBundle("Messages", locale); 
+
+		
+		 System.out.println(bundle.getString("morning"));
+		
+	
 	}
 
 }
