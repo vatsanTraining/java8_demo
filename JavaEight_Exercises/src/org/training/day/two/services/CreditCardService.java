@@ -4,6 +4,7 @@ import java.util.List;
 import static java.util.stream.Collectors.*;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 import com.training.domains.CreditCard;
 import com.training.repo.CreditCardRepository;
@@ -63,5 +64,16 @@ public class CreditCardService {
 //		return listOfList.stream().flatMap(element -> element.stream()).limit(4).collect(toList());
 		
 		return listOfList.stream().flatMap(element -> element.stream()).skip(4).collect(toList());
+	}
+	
+	public List<CreditCard> sortedList(){
+		
+		 List<CreditCard> cardList = repo.getList();
+
+		 return cardList.stream().
+				  sorted(Comparator.comparing(CreditCard::getCardHolder)).
+				       collect(toList());
+		 
+		
 	}
 }
