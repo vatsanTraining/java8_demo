@@ -1,6 +1,8 @@
 package org.training.day.two;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.training.day.two.services.CreditCardService;
 
@@ -12,11 +14,23 @@ public class Application {
 		
 		list.forEach(System.out::println);
 	}
+	
+public static void print(Map<String,Double> map) {
+		
+
+	Set<Map.Entry<String, Double>> data = map.entrySet();
+	
+	for(Map.Entry<String, Double> eachItem : data) {
+		
+		System.out.println(eachItem.getKey()   + eachItem.getValue());
+	}
+}
+	
 	public static void main(String[] args) {
 	
 		CreditCardService service = new CreditCardService();
 		
-		int key =4;
+		int key =6;
 		
 		switch (key) {
 		case 1:
@@ -34,6 +48,15 @@ public class Application {
 		case 4:
 			List<CreditCard> sortedList = service.sortedList();
 			print(sortedList);
+			break;
+		case 5:
+			List<String> distinctCardHolders = service.getDistinctCustomerName();
+			print(distinctCardHolders);
+			break;
+		case 6:
+			Map<String,Double> map = service.transformListToMap();
+			print(map);
+			break;
 		default:
 			break;
 		}

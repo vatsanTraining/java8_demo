@@ -1,10 +1,14 @@
 package org.training.day.two.services;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 import static java.util.stream.Collectors.*;
 
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.LinkedList;
 
 import com.training.domains.CreditCard;
 import com.training.repo.CreditCardRepository;
@@ -82,4 +86,29 @@ public class CreditCardService {
 				       collect(toList());
 		
 	}
+	
+	public List<String> getDistinctCustomerName(){
+		
+		 List<CreditCard> cardList = repo.getList();
+
+		 return cardList.stream().map(element -> element.getCardHolder()).
+				                distinct().collect(toList());
+				 
+		
+		 
+	}
+	
+	
+	public Map<String,Double> transformListToMap(){
+		
+		 List<CreditCard> cardList = repo.getList();
+
+		 
+		 return cardList.stream().filter(element -> element.getCreditLimit()>300000)
+				                .collect(toMap(CreditCard::getCardHolder, 
+				                		CreditCard::getCreditLimit));
+				 
+		
+	}
+
 }
