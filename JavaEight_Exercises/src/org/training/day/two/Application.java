@@ -30,7 +30,7 @@ public static void print(Map<String,Double> map) {
 	
 		CreditCardService service = new CreditCardService();
 		
-		int key =5;
+		int key =2;
 		
 		switch (key) {
 		case 1:

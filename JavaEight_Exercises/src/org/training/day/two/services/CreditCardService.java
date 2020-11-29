@@ -55,11 +55,15 @@ public class CreditCardService {
 	public List<String> usingMap(double amount){
 		
 		
-		
+		Optional<String> firstIntheList =   this.cardList.stream().filter(element -> element.getCreditLimit()>amount).
+           map(element -> element.getCardHolder()).findFirst();
+
+		 System.out.println("First in the List:="+firstIntheList.get());
 		 
 		 return   this.cardList.stream().filter(element -> element.getCreditLimit()>amount).
 		            peek((element) ->System.out.println("Element"+element)).map(element -> element.getCardHolder()).collect(toList());
-		
+
+		 
 	}
 	
 	public List<String> usingFlatMap(){
