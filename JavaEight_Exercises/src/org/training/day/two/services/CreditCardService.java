@@ -1,8 +1,10 @@
 package org.training.day.two.services;
 
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Map;
 import java.util.Optional;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.*;
@@ -92,8 +94,17 @@ public class CreditCardService {
 	
 	public List<String> getDistinctCustomerName(){
 		
-		
+		// Using Tree Set to eliminate duplicates
+		TreeSet<String> linkedList =this.cardList.stream()
+				 .map(element -> element.getCardHolder()).
+                      collect(toCollection(TreeSet<String>::new));
 
+		System.out.println("Collected to TreeSet");
+		linkedList.forEach(System.out::println);
+		System.out.println("==============");
+		
+		
+		// Using Distinct to achieve the same
 		 return this.cardList.stream().map(element -> element.getCardHolder()).
 				                distinct().collect(toList());
 				 
