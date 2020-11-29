@@ -3,6 +3,7 @@ package org.training.day.two;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class UsingDateTime {
@@ -11,6 +12,9 @@ public class UsingDateTime {
 		
 		// Getting Current Date
 		LocalDate today = LocalDate.now();
+		
+		  System.out.println("Formatted Date:=" +
+		      today.format(DateTimeFormatter.ofPattern("dd-MMM-YYYY")));
 		
 		System.out.println("Today Date: "+today.getDayOfMonth());
 		// Getting Curent Time
