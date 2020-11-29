@@ -48,7 +48,7 @@ public class CreditCardService {
 		 
 		 
 		 return   cardList.stream().filter(element -> element.getCreditLimit()>amount).
-		            map(element -> element.getCardHolder()).collect(toList());
+		            peek((element) ->System.out.println("Element"+element)).map(element -> element.getCardHolder()).collect(toList());
 		
 	}
 	
@@ -60,7 +60,8 @@ public class CreditCardService {
 		List<List<String>> listOfList = Arrays.asList(list1,list2);
 		
 		
-		return listOfList.stream().flatMap(element -> element.stream()).collect(toList());
+//		return listOfList.stream().flatMap(element -> element.stream()).limit(4).collect(toList());
 		
+		return listOfList.stream().flatMap(element -> element.stream()).skip(4).collect(toList());
 	}
 }

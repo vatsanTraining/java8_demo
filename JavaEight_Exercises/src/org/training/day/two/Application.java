@@ -26,9 +26,11 @@ public class Application {
 		case 2:
 			List<String> cardHolders = service.usingMap(300000);
 			print(cardHolders);
+			break;
 		case 3:
 			List<String> combinedList = service.usingFlatMap();
 			print(combinedList);
+			break;
 		default:
 			break;
 		}
